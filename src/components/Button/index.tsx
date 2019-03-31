@@ -4,18 +4,24 @@ import { cn } from 'recn';
 import { IClassNameProps } from '../../typings';
 
 import './Button.scss';
+import { IIconProps, Icon } from '../Icon/Icon';
 
 
-const cnButton = cn('Button');
-
-interface IButtonProps extends IClassNameProps {
-  onClick?(): void;
-  text: string;
+export interface IButtonProps extends IClassNameProps {
+  onButtonClick?: (e: React.MouseEvent) => void;
+  hint?: string;
+  text?: string;
+  icon?: IIconProps;
 }
 
-export const Button: React.FC<IButtonProps> = props => {
-  const { onClick, text } = props;
+export const cnButton = cn('Button');
+
+export const Button: React.FC<IButtonProps> = React.memo(props => {
+  const { className, onButtonClick, text, icon } = props;
   return (
-    <button onClick={onClick} className={cnButton(null, [props.className])}>{text}</button>
+    <button className={cnButton(null, [className])} onClick={onButtonClick}>
+      {text}
+      {icon && <Icon {...icon} />}
+    </button>
   );
-};
+}); 

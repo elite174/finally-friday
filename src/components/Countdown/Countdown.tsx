@@ -25,7 +25,7 @@ export const Countdown = () => {
 
   const formatDate = (time: Dayjs) => {
     const days = time.date() - 1;
-    return `${days} дней ${format(time, 'h часов mm минут ss секунд')}`;
+    return `${days} дней ${format(time, 'HH часов mm минут ss секунд')}`;
   }
 
   useEffect(() => {
@@ -37,6 +37,7 @@ export const Countdown = () => {
   return (
     <div className={cnCountdown()}>
       <div className={cnCountdown('Title')}>До пятницы осталось:</div>
+      <div className={cnCountdown('Divider')} />
       <div className={cnCountdown('Counter')}>{formatDate(time)}</div>
     </div>
   );
