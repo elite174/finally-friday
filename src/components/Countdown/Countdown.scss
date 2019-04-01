@@ -1,6 +1,4 @@
 .Countdown {
-  --color: 340;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,20 +6,20 @@
 
   height: 100%;
 
-  background: linear-gradient(hsl(var(--color), 10%, 10%), hsl(var(--color), 10%, 5%));
+  background: linear-gradient(hsl(var(--primaryHue), 10%, 10%), hsl(var(--primaryHue), 10%, 5%));
 
   &-Title {
     font-size: 24px;
 
     margin-bottom: 10px;
 
-    color: hsl(var(--color), 10%, 90%);
+    color: hsl(var(--primaryHue), 10%, 90%);
   }
 
   &-Counter {
     font-size: 32px;
 
-    color: hsl(var(--color), 80%, 40%);
+    color: hsl(var(--primaryHue), 80%, 40%);
   }
 
   &-Divider {
@@ -29,9 +27,9 @@
     width: 80%;
     background: linear-gradient(
       to left,
-      hsla(var(--color), 5%, 50%, 0.05) 0%,
-      hsla(var(--color), 81%, 94%, 0.2) 50%,
-      hsla(var(--color), 5%, 50%, 0.05) 100%
+      hsla(var(--primaryHue), 5%, 50%, 0.05) 0%,
+      hsla(var(--primaryHue), 81%, 94%, 0.2) 50%,
+      hsla(var(--primaryHue), 5%, 50%, 0.05) 100%
     );
   }
 }
