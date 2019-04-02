@@ -1,4 +1,8 @@
+@import '../../styles/color-transition.scss';
+
 .Countdown {
+  @extend .color-transition;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,6 +21,7 @@
   }
 
   &-Counter {
+    @extend .color-transition;
     font-size: 32px;
 
     color: hsl(var(--primaryHue), 80%, 40%);

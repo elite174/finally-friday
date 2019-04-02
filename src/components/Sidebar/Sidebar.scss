@@ -1,0 +1,17 @@
+.Sidebar {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    width: 0;
+    height: 100%;
+
+    background-color: red;
+
+    transition: width .6s ease-out;
+    z-index: 2;
+
+    &_opened {
+        width: 300px;
+    }
+}

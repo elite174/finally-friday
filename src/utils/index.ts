@@ -32,3 +32,5 @@ export const getNextDay = (currentDate: Dayjs, day: Days = Days.friday) => {
 }
 
 export const format = (date: Dayjs, template: string) => date.format(template);
+
+export const noop = () => { };
