@@ -6,29 +6,30 @@
 
   height: 100%;
 
-  background: linear-gradient(hsl(var(--primaryHue), 10%, 10%), hsl(var(--primaryHue), 10%, 5%));
+  background: rgb(226, 226, 226);
 
   &-Title {
     font-size: 24px;
 
-    margin-bottom: 10px;
-
-    color: hsl(var(--primaryHue), 10%, 90%);
+    color: rgb(19, 19, 19);
   }
 
   &-Counter {
     font-size: 32px;
 
-    color: hsl(var(--primaryHue), 80%, 40%);
+    color: rgb(216, 56, 56);
   }
 
   &-Divider {
+    margin: 15px 0;
+
     height: 1px;
     width: 80%;
+
     background: linear-gradient(
       to left,
       hsla(var(--primaryHue), 5%, 50%, 0.05) 0%,
-      hsla(var(--primaryHue), 81%, 94%, 0.2) 50%,
+      hsla(var(--primaryHue), 81%, 5%, 0.2) 50%,
       hsla(var(--primaryHue), 5%, 50%, 0.05) 100%
     );
   }

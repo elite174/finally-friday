@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { cn } from 'recn';
-import { Dayjs } from 'dayjs';
+import { getDifference, getCurrentDay, getNextDay, format } from '../../utils';
 
 import './Countdown.scss';
-import { getDifference, getCurrentDay, getNextDay, format } from '../../utils';
 
 const cnCountdown = cn('Countdown');
 
@@ -13,7 +12,7 @@ export const Countdown = React.memo(() => {
   let [time, setTime] = useState(getDifference(getNextDay(currentDate), currentDate));
 
   const computeTime = () => {
-    time = time.subtract(1, 's');
+    time = time.minus({ second: 1 });
     setTime(time);
   }
 
@@ -22,11 +21,6 @@ export const Countdown = React.memo(() => {
   };
 
   const stopCounter = () => clearInterval(timerId);
-
-  const formatDate = (time: Dayjs) => {
-    const days = time.date() - 1;
-    return `${days} дней ${format(time, 'HH часов mm минут ss секунд')}`;
-  }
 
   useEffect(() => {
     startCounter();
@@ -38,7 +32,7 @@ export const Countdown = React.memo(() => {
     <div className={cnCountdown()}>
       <div className={cnCountdown('Title')}>До пятницы осталось:</div>
       <div className={cnCountdown('Divider')} />
-      <div className={cnCountdown('Counter')}>{formatDate(time)}</div>
+      <div className={cnCountdown('Counter')}>{format(time, `dd дней hh часов mm минут ss секунд`)}</div>
     </div>
   );
 
