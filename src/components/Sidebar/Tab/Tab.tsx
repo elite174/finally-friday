@@ -13,7 +13,7 @@ interface ISidebarTabProps {
 export const Tab: React.FC<ISidebarTabProps> = React.memo(props => {
     return (
         <div className={cnSidebar('Tab', { active: props.active })} onClick={props.onClick}>
-            {props.text}
+            <span className={cnSidebar('TabText')}>{props.text}</span>
         </div>
     );
 });

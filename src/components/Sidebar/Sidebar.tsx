@@ -5,6 +5,7 @@ import './Sidebar.scss';
 import { DateInput } from '../DateInput/DateInput';
 import { Tab } from './Tab/Tab';
 import { Icon } from '../Icon/Icon';
+import { Button } from '../Button';
 
 export const cnSidebar = cn('Sidebar');
 
@@ -32,9 +33,7 @@ export const Sidebar: React.FC<ISidebarProps> = React.memo((props) => {
 
   return (
     <div className={cnSidebar({ opened: sidebarOpened })}>
-      <div className={cnSidebar('Menu')}>
-        <Icon name='settings' onIconClick={onSettingsClick} />
-      </div>
+      <Icon name='settings' className={cnSidebar('Menu')} onIconClick={onSettingsClick} />
       <div className={cnSidebar('TabPanel')}>
         {tabs.map(tab => (
           <Tab text={tab.text} active={tab.index === activeTab} onClick={onTabClick(tab.index)} />

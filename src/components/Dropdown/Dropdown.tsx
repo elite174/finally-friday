@@ -20,8 +20,8 @@ export const Dropdown: React.FC<IDropdownProps> = React.memo((props) => {
         <div className={cnDropdown(null, [className])}>
             <label className={cnDropdown('Label')}>{caption}</label>
             <select className={cnDropdown('Select')} ref={forwardRef}>
-                {options.map(option => (
-                    <option key={option} selected={option === selected}>{option}</option>
+                {options.map((option, i) => (
+                    <option key={option} selected={option === selected} value={i + 1}>{option}</option>
                 ))}
             </select>
         </div>

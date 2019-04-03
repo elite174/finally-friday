@@ -13,6 +13,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
-#root{
+#root {
   height: 100%;
+}
+
+* {
+  box-sizing: border-box;
 }

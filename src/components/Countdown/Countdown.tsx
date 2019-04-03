@@ -7,7 +7,7 @@ import './Countdown.scss';
 const cnCountdown = cn('Countdown');
 
 export const Countdown = React.memo(() => {
-  let currentDate = getCurrentDay();
+  const currentDate = getCurrentDay();
   let timerId: number;
   let [time, setTime] = useState(getDifference(getNextDay(currentDate), currentDate));
 

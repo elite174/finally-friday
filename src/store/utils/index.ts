@@ -1,7 +1,7 @@
 import { Action, IState } from "../typings";
 
 
-export const createReducer = (reducers: ((state: IState, action: Action) => IState)[]) => {
+export const createReducer = (...reducers: ((state: IState, action: Action) => IState)[]) => {
     return (state: IState, action: Action) => {
         let result = state;
 
@@ -11,4 +11,4 @@ export const createReducer = (reducers: ((state: IState, action: Action) => ISta
 
         return result;
     }
-}
+};
