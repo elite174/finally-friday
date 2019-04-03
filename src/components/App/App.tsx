@@ -15,22 +15,13 @@ const cnApp = cn('App');
 
 export const App = () => {
   const [store, dispatch] = useReducer(rootReducer, initialState);
-  const [sidebarOpened, setSidebarOpened] = useState(false);
-
-  const onSettingsClick = () => {
-    setSidebarOpened(!sidebarOpened);
-    dispatch({ type: ColorStoreActions.change, payload: Math.round(Math.random() * 360) });
-  }
 
   return (
     <StoreContext.Provider value={{ store, dispatch }}>
       <div className={cnApp()}>
         <Theme />
         <Countdown />
-        <div className={cnApp('Settings')}>
-          <Icon name='settings' onIconClick={onSettingsClick} style={{ color: 'white' }} />
-        </div>
-        <Sidebar opened={sidebarOpened} />
+        <Sidebar />
       </div>
     </StoreContext.Provider>
   );
