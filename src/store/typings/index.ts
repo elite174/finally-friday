@@ -1,4 +1,5 @@
 import { IColorStore } from '../ColorStore/typings';
+import { ISettingsStore } from '../SettingsStore/typings';
 
 export interface Action {
   type: string;
@@ -7,4 +8,5 @@ export interface Action {
 
 export interface IState {
   colorStore: IColorStore;
+  settingsStore: ISettingsStore;
 }

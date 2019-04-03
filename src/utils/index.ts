@@ -1,36 +1,30 @@
-import dayjs, { Dayjs } from 'dayjs';
-import utc from 'dayjs/plugin/utc';
-import 'dayjs/locale/ru';
 import { Days } from '../typings';
+import { DateTime, Duration } from 'luxon';
 
-dayjs.locale('ru')
-dayjs.extend(utc);
-
-export const getCurrentDay = () => dayjs();
+export const getCurrentDay = () => DateTime.local();
 /**
  * Returns the difference between two dates
  */
-export const getDifference = (targetDate: Dayjs, currentDate: Dayjs) => {
-  return dayjs(targetDate.diff(currentDate, 'millisecond')).utc();
+export const getDifference = (targetDate: DateTime, currentDate: DateTime) => {
+  return targetDate.diff(currentDate);
 }
 
 /**
  * Returns the beginning of the day
  */
-export const setStartOfDay = (date: Dayjs) => date.startOf('day');
+export const setStartOfDay = (date: DateTime) => date.startOf('day');
 
 /**
  * Returns the next day [e.g. next friday, next tueday] of a week 
  */
-export const getNextDay = (currentDate: Dayjs, day: Days = Days.friday) => {
-  let nextDay = setStartOfDay(currentDate.set('day', day));
-  if (nextDay.isBefore(currentDate)) {
-    nextDay = setStartOfDay(currentDate.add(7, 'day'));
+export const getNextDay = (currentDate: DateTime, weekday: Days = Days.friday) => {
+  let nextDay = setStartOfDay(currentDate.set({ weekday }));
+  if (nextDay < currentDate) {
+    nextDay = setStartOfDay(currentDate.plus({ days: 7 }));
   }
 
   return nextDay;
 }
 
-export const format = (date: Dayjs, template: string) => date.format(template);
-
 export const noop = () => { };
+export const format = (date: DateTime | Duration, template: string) => date.toFormat(template);

@@ -2,6 +2,8 @@ import React from 'react';
 import { cn } from 'recn';
 import { IClassNameProps } from '../../typings';
 
+import './Dropdown.scss';
+
 interface IDropdownProps extends IClassNameProps {
     options: string[];
     selected: string;
@@ -15,9 +17,9 @@ export const Dropdown: React.FC<IDropdownProps> = React.memo((props) => {
     const { options, selected, forwardRef, className, caption } = props;
 
     return (
-        <div>
-            <label>{caption}</label>
-            <select className={cnDropdown(null, [className])} ref={forwardRef}>
+        <div className={cnDropdown(null, [className])}>
+            <label className={cnDropdown('Label')}>{caption}</label>
+            <select className={cnDropdown('Select')} ref={forwardRef}>
                 {options.map(option => (
                     <option key={option} selected={option === selected}>{option}</option>
                 ))}

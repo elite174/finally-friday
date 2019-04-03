@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { cn } from 'recn';
 import { Dropdown } from '../Dropdown/Dropdown';
 
-
 const cnDateInput = cn('DateInput');
 
 export const DateInput = () => {

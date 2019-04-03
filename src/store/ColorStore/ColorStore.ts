@@ -13,7 +13,6 @@ export const colorReducer = (state: IState, action: ColorActions) => produce(sta
     case ColorStoreActions.change:
       draft.colorStore.primary = action.payload;
       return draft;
-      break;
     default:
       return draft;
   }
