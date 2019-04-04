@@ -6,6 +6,8 @@ import { DateInput } from '../DateInput/DateInput';
 import { Tab } from './Tab/Tab';
 import { Icon } from '../Icon/Icon';
 import { Button } from '../Button';
+import { DateForm } from '../DateForm/DateForm';
+import { CounterList } from '../CounterList/CounterList';
 
 export const cnSidebar = cn('Sidebar');
 
@@ -34,12 +36,17 @@ export const Sidebar: React.FC<ISidebarProps> = React.memo((props) => {
   return (
     <div className={cnSidebar({ opened: sidebarOpened })}>
       <Icon name='settings' className={cnSidebar('Menu')} onIconClick={onSettingsClick} />
+      <DateForm />
+      <CounterList />
       <div className={cnSidebar('TabPanel')}>
         {tabs.map(tab => (
-          <Tab text={tab.text} active={tab.index === activeTab} onClick={onTabClick(tab.index)} />
+          <Tab
+            key={tab.index}
+            text={tab.text}
+            active={tab.index === activeTab}
+            onClick={onTabClick(tab.index)} />
         ))}
       </div>
-      <DateInput />
     </div>
   );
 });
