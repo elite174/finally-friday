@@ -18,11 +18,26 @@
     color: rgb(19, 19, 19);
   }
 
-  &-Counter {
-    @extend .color-transition;
-    font-size: 32px;
+  &-RemainingTime {
+    display: flex;
+    justify-content: space-between;
+  }
 
-    color: rgb(216, 56, 56);
+  &-FinalTitle {
+    font-size: 40px;
+
+    position: absolute;
+    top: 20%;
+    left: 50%;
+
+    width: 90%;
+
+    animation: rainbow 3s infinite;
+    transform: translateX(-50%);
+    text-transform: uppercase;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   &-Divider {
@@ -31,11 +46,35 @@
     height: 1px;
     width: 80%;
 
-    background: linear-gradient(
-      to left,
+    background: linear-gradient(to left,
       hsla(var(--primaryHue), 5%, 50%, 0.05) 0%,
       hsla(var(--primaryHue), 81%, 5%, 0.2) 50%,
-      hsla(var(--primaryHue), 5%, 50%, 0.05) 100%
-    );
+      hsla(var(--primaryHue), 5%, 50%, 0.05) 100%);
+  }
+}
+
+@keyframes rainbow {
+  0% {
+    color: rgb(238, 76, 76);
+  }
+
+  20% {
+    color: rgb(238, 238, 76);
+  }
+
+  40% {
+    color: rgb(76, 238, 100);
+  }
+
+  60% {
+    color: rgb(76, 235, 238);
+  }
+
+  80% {
+    color: rgb(111, 76, 238);
+  }
+
+  100% {
+    color: rgb(238, 76, 76);
   }
 }
