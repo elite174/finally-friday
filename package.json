@@ -1,6 +1,7 @@
 {
-  "name": "friday",
+  "name": "finally-friday",
   "version": "0.1.0",
+  "homepage" : "http://elite174.github.io/finally-friday",
   "private": true,
   "dependencies": {
     "@types/jest": "24.0.11",
