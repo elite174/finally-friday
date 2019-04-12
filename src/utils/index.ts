@@ -15,17 +15,17 @@ export const getDifference = (targetDate: DateTime, currentDate: DateTime) => {
 export const setStartOfDay = (date: DateTime) => date.startOf('day');
 
 
-export const getWeekday = (currentDate: DateTime, weekday: Days = Days.thursday) => (
+export const getWeekday = (currentDate: DateTime, weekday: Days = Days.friday) => (
   setStartOfDay(currentDate.set({ weekday }))
 );
 
 /**
  * Returns the next day [e.g. next friday, next tueday] of a week 
  */
-export const getNextWeekday = (currentDate: DateTime, weekday: Days = Days.thursday) => {
+export const getNextWeekday = (currentDate: DateTime, weekday: Days = Days.friday) => {
   let nextDay = setStartOfDay(currentDate.set({ weekday }));
   if (nextDay < currentDate) {
-    nextDay = setStartOfDay(currentDate.plus({ days: 7 }));
+    nextDay = setStartOfDay(currentDate.plus({ days: 7 }).set({ weekday }));
   }
 
   return nextDay;

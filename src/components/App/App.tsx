@@ -23,7 +23,7 @@ export const App = () => {
         <div className={cnApp()}>
           <Theme />
           <Countdown />
-          <Sidebar />
+          {false && <Sidebar />}
         </div>
       </StoreContext.Provider>
     </LanguageContext.Provider>
