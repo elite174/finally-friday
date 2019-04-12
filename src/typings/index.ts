@@ -10,4 +10,4 @@ export enum Days {
 
 export interface IClassNameProps {
   className?: string;
-}
+};
