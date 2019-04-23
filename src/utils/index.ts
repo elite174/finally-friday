@@ -9,6 +9,8 @@ export const getDifference = (targetDate: DateTime, currentDate: DateTime) => {
   return targetDate.diff(currentDate);
 }
 
+export const createDate = (date: string) => DateTime.fromSQL(date);
+
 /**
  * Returns the beginning of the day
  */

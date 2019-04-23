@@ -1,33 +1,41 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { cn } from 'recn';
-import { getDifference, getCurrentDay, getNextWeekday, format, getWeekday } from '../../utils';
+import { getDifference, getCurrentDay, getNextWeekday, format, getWeekday, createDate } from '../../utils';
 import * as langset from './Countdown.i18n';
 import * as commonLangset from '../../common/common.i18n';
+import { ICounter } from '../../store/CounterStore/CounterStore.typings';
 
 import { LanguageContext } from '../../context/LanguageContext';
 
 import './Countdown.scss';
 import { Counter } from '../Counter/Counter';
+import { IClassNameProps } from '../../typings';
+import { StoreContext } from '../../context/StoreContext';
 
 export const cnCountdown = cn('Countdown');
 
-interface ICountdownProps {
-  event?: string;
-}
+interface ICountdownProps extends IClassNameProps { }
 
-export const Countdown: React.FC<ICountdownProps> = React.memo(props => {
+export const Countdown: React.FC<ICountdownProps> = React.memo(() => {
   const { locale } = useContext(LanguageContext);
+  const { store } = useContext(StoreContext);
+
   const lang = langset[locale];
   const commonLang = commonLangset[locale];
-
+  let currentCounter: ICounter | undefined;
   let timerId: number;
   let currentDate = getCurrentDay();
-  const targetDate = getWeekday(currentDate);
+  currentCounter = store.counterStore.counters.find(counter => counter.id === store.counterStore.currentCounterId);
+  const targetDate = currentCounter ? createDate(currentCounter.date) : getWeekday(currentDate);
+  const targetNextDate = currentCounter ? createDate(currentCounter.date) : getNextWeekday(currentDate);
   let isFinished = targetDate.hasSame(currentDate, 'day');
-  const targetNextDate = getNextWeekday(currentDate);
 
   const [time, setTime] = useState(getDifference(targetNextDate, currentDate));
   const [finished, setFinished] = useState(isFinished);
+
+  const init = () => {
+
+  }
 
   const computeTime = () => {
     currentDate = getCurrentDay();

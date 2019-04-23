@@ -2,26 +2,16 @@ import React, { useState } from 'react';
 import { cn } from 'recn';
 
 import './Sidebar.scss';
-import { DateInput } from '../DateInput/DateInput';
-import { Tab } from './Tab/Tab';
 import { Icon } from '../Icon/Icon';
-import { Button } from '../Button';
 import { DateForm } from '../DateForm/DateForm';
 import { CounterList } from '../CounterList/CounterList';
+import { TabPanel } from '../TabPanel/TabPanel';
 
 export const cnSidebar = cn('Sidebar');
 
 interface ISidebarProps {
   opened?: boolean;
 }
-
-const tabs = [{
-  text: 'Таймеры',
-  index: 0
-}, {
-  text: 'Настройки',
-  index: 1
-}]
 
 export const Sidebar: React.FC<ISidebarProps> = React.memo((props) => {
   const [activeTab, setActiveTab] = useState(0);
@@ -36,17 +26,24 @@ export const Sidebar: React.FC<ISidebarProps> = React.memo((props) => {
   return (
     <div className={cnSidebar({ opened: sidebarOpened })}>
       <Icon name='settings' className={cnSidebar('Menu')} onIconClick={onSettingsClick} />
-      <DateForm />
-      <CounterList />
-      <div className={cnSidebar('TabPanel')}>
-        {tabs.map(tab => (
-          <Tab
-            key={tab.index}
-            text={tab.text}
-            active={tab.index === activeTab}
-            onClick={onTabClick(tab.index)} />
-        ))}
-      </div>
+      <TabPanel
+        tabs={[
+          {
+            content: <>
+              <DateForm />
+              <CounterList />
+            </>,
+            text: 'Таймеры',
+            onClick: onTabClick(0),
+            active: activeTab === 0,
+          },
+          {
+            content: null,
+            text: 'Настройки',
+            onClick: onTabClick(1),
+            active: activeTab === 1,
+          }
+        ]} />
     </div>
   );
 });

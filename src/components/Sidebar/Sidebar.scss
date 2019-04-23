@@ -1,7 +1,7 @@
 .Sidebar {
     position: absolute;
     top: 0;
-    right: -300px;
+    right: 0;
 
     width: 300px;
     height: 100%;
@@ -9,20 +9,21 @@
     background-color: white;
     box-shadow: none;
 
-    transition: box-shadow, right .3s ease-out;
+    transform: translateX(300px);
+    transition: box-shadow, transform .3s ease-out;
     z-index: 2;
 
-    will-change: box-shadow, right;
+    will-change: box-shadow, transform;
 
     &_opened {
-        right: 0px;
+        transform: translateX(0);
         box-shadow: 0 0 10px rgba(0, 0, 0, .3);
     }
 
     &-TabPanel {
         display: flex;
 
-        height: 60px;
+        height: 100%;
     }
 
     &-Menu {
