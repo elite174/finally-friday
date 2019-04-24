@@ -15,7 +15,7 @@ export interface IIconProps extends IClassNameProps {
 const cnIcon = cn('Icon');
 
 export const Icon: React.FC<IIconProps> = React.memo(props => {
-    const { onIconClick, style, iconStyle = 'ios', name, className } = props;
+    const { onIconClick, style, iconStyle = 'md', name, className } = props;
 
     return (
         <i

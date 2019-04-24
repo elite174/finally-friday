@@ -11,12 +11,20 @@
   box-shadow: none;
   border: none;
 
-  font-size: 14px;
-  font-weight: 600;
+  font-size: var(--font-size-primary);
 
   transition: color 0.2s ease-out;
 
   &:hover {
     color: rgb(61, 174, 222);
+
+    .Button-Icon {
+      color: rgb(61, 174, 222);
+    }
+  }
+
+  &-Icon{
+    margin-left: 5px;
+    font-size: var(--font-size-primary);
   }
 }

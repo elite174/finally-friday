@@ -42,7 +42,7 @@ export const Countdown: React.FC<ICountdownProps> = React.memo((props) => {
         setFinished(isFinished);
       }
     }
-  
+
     computeTime();
     const intervalTimerId = window.setInterval(computeTime, 1000);
 
@@ -50,12 +50,13 @@ export const Countdown: React.FC<ICountdownProps> = React.memo((props) => {
   }, [props.counter]);
 
   const remainingTime = format(time, 'dd,hh,mm,ss').split(',');
+  const eventName = useMemo(() => currentCounter ? currentCounter.text : 'пятница', [props.counter]);
 
   return (
     <div className={cnCountdown()}>
-      {finished && <div className={cnCountdown('FinalTitle')}>{`${lang.finally} пятница!`}</div>}
-      <div className={cnCountdown('Title')}>{`Пятница ${lang.in}:`}</div>
-      <Divider/>
+      {finished && <div className={cnCountdown('FinalTitle')}>{`${lang.finally} ${eventName}!`}</div>}
+      <div className={cnCountdown('Title')}>{`${eventName} ${lang.in}:`}</div>
+      <Divider />
       <div className={cnCountdown('RemainingTime')}>
         <Counter unit={commonLang.days} value={remainingTime[0]} />
         <Counter unit={commonLang.hours} value={remainingTime[1]} />

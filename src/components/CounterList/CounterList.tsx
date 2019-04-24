@@ -14,6 +14,7 @@ export const CounterList = React.memo(() => {
 
     return (
         <div className={cnCounterList()}>
+            {counters.length === 0 && <div className={cnCounterList('Placeholder')}>Нет сохранённых счётчиков</div>}
             {counters.sort((a, b) => a.date < b.date ? -1 : 0).map(counter => (
                 <CounterListCounter
                     key={counter.id}

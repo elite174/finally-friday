@@ -9,10 +9,11 @@ import { DateTime } from 'luxon';
 import { CounterStoreActionTypes, CounterAddAction } from '../../store/CounterStore/CounterStore.typings';
 import './DateForm.scss';
 import { Checkbox } from '../Checkbox/Checkbox';
+import { IClassNameProps } from '../../typings';
 
 const cnDateForm = cn('DateForm');
 
-export const DateForm: React.FC = React.memo(() => {
+export const DateForm: React.FC<IClassNameProps> = React.memo((props) => {
     const { dispatch } = useContext(StoreContext);
 
     const titleRef = React.createRef<HTMLInputElement>();
@@ -20,13 +21,13 @@ export const DateForm: React.FC = React.memo(() => {
     const repeatRef = React.createRef<HTMLInputElement>();
 
     const reset = () => {
-        if (!dateRef.current || !titleRef.current || !repeatRef.current) {
+        if (!dateRef.current || !titleRef.current) {
             return;
         }
 
         titleRef.current.value = '';
-        dateRef.current.value = getCurrentDay().toSQL();
-        repeatRef.current.checked = false;
+        dateRef.current.value = getCurrentDay().toSQLDate();
+        //repeatRef.current.checked = false;
     }
 
     const handleError = () => {
@@ -53,10 +54,10 @@ export const DateForm: React.FC = React.memo(() => {
     }
 
     return (
-        <div className={cnDateForm()}>
+        <div className={cnDateForm(null, [props.className])}>
             <TextInput className={cnDateForm('Input')} forwardRef={titleRef} caption={'Введите название события'} placeholder='День рождения Саши' />
             <DateInput className={cnDateForm('Input')} forwardRef={dateRef} caption={'Введите дату'} date={getCurrentDay()} />
-            <Checkbox  className={cnDateForm('Input')} forwardRef={repeatRef} label={'Повторять?'} checked={false} />
+            {false && <Checkbox className={cnDateForm('Input')} forwardRef={repeatRef} label={'Повторять?'} checked={false} />}
             <Button text="Добавить" onButtonClick={onButtonClick} />
         </div>
     )

@@ -1,11 +1,10 @@
 import React from 'react';
 import { cn } from 'recn';
 
+import { IIconProps, Icon } from '../Icon/Icon';
 import { IClassNameProps } from '../../typings';
 
 import './Button.scss';
-import { IIconProps, Icon } from '../Icon/Icon';
-
 
 export interface IButtonProps extends IClassNameProps {
   onButtonClick?: (e: React.MouseEvent) => void;
@@ -21,7 +20,7 @@ export const Button: React.FC<IButtonProps> = React.memo(props => {
   return (
     <button className={cnButton(null, [className])} onClick={onButtonClick}>
       {text}
-      {icon && <Icon {...icon} />}
+      {icon && <Icon {...icon} className={cnButton('Icon')} />}
     </button>
   );
 }); 

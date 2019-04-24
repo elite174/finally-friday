@@ -24,23 +24,27 @@ export const Sidebar: React.FC<ISidebarProps> = React.memo((props) => {
     setSidebarOpened(!sidebarOpened);
   }
 
+  const timerPage = <>
+    <CounterList />
+    <Divider className={cnSidebar('Item')} />
+    <DateForm className={cnSidebar('Bottom')} />
+  </>;
+
+  const settigsPage = <></>;
+
   return (
     <div className={cnSidebar({ opened: sidebarOpened })}>
       <Icon name='settings' className={cnSidebar('Menu')} onIconClick={onSettingsClick} />
       <TabPanel
         tabs={[
           {
-            content: <>
-              <CounterList />
-              <Divider />
-              <DateForm />
-            </>,
+            content: timerPage,
             text: 'Таймеры',
             onClick: onTabClick(0),
             active: activeTab === 0,
           },
           {
-            content: null,
+            content: settigsPage,
             text: 'Настройки',
             onClick: onTabClick(1),
             active: activeTab === 1,
