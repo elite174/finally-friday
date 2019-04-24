@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useMemo } from 'react';
 import { cn } from 'recn';
 import { getDifference, getCurrentDay, getNextWeekday, format, getWeekday, createDate } from '../../utils';
 import * as langset from './Countdown.i18n';
@@ -10,53 +10,44 @@ import { LanguageContext } from '../../context/LanguageContext';
 import './Countdown.scss';
 import { Counter } from '../Counter/Counter';
 import { IClassNameProps } from '../../typings';
-import { StoreContext } from '../../context/StoreContext';
+import { Divider } from '../Divider/Divider';
 
 export const cnCountdown = cn('Countdown');
 
-interface ICountdownProps extends IClassNameProps { }
+interface ICountdownProps extends IClassNameProps {
+  counter?: ICounter;
+}
 
-export const Countdown: React.FC<ICountdownProps> = React.memo(() => {
+export const Countdown: React.FC<ICountdownProps> = React.memo((props) => {
   const { locale } = useContext(LanguageContext);
-  const { store } = useContext(StoreContext);
+  const currentCounter = props.counter;
 
-  const lang = langset[locale];
-  const commonLang = commonLangset[locale];
-  let currentCounter: ICounter | undefined;
-  let timerId: number;
-  let currentDate = getCurrentDay();
-  currentCounter = store.counterStore.counters.find(counter => counter.id === store.counterStore.currentCounterId);
-  const targetDate = currentCounter ? createDate(currentCounter.date) : getWeekday(currentDate);
-  const targetNextDate = currentCounter ? createDate(currentCounter.date) : getNextWeekday(currentDate);
+  let currentDate = useMemo(() => getCurrentDay(), []);
+  const targetDate = useMemo(() => currentCounter ? createDate(currentCounter.date) : getWeekday(currentDate), [currentCounter]);
+  const targetNextDate = useMemo(() => currentCounter ? createDate(currentCounter.date) : getNextWeekday(currentDate), [currentCounter]);
   let isFinished = targetDate.hasSame(currentDate, 'day');
 
-  const [time, setTime] = useState(getDifference(targetNextDate, currentDate));
-  const [finished, setFinished] = useState(isFinished);
+  const [time, setTime] = useState(() => getDifference(targetNextDate, currentDate));
+  const [finished, setFinished] = useState(() => isFinished);
 
-  const init = () => {
-
-  }
-
-  const computeTime = () => {
-    currentDate = getCurrentDay();
-    isFinished = targetDate.hasSame(currentDate, 'day');
-    setTime(getDifference(targetNextDate, currentDate));
-    if (isFinished !== finished) {
-      setFinished(isFinished);
-    }
-  }
-
-  const startCounter = () => {
-    timerId = window.setInterval(computeTime, 1000);
-  };
-
-  const stopCounter = () => clearInterval(timerId);
+  const lang = langset[locale];
+  const commonLang = useMemo(() => commonLangset[locale], [locale]);
 
   useEffect(() => {
-    startCounter();
+    const computeTime = () => {
+      currentDate = getCurrentDay();
+      isFinished = targetDate.hasSame(currentDate, 'day');
+      setTime(getDifference(targetNextDate, currentDate));
+      if (isFinished !== finished) {
+        setFinished(isFinished);
+      }
+    }
+  
+    computeTime();
+    const intervalTimerId = window.setInterval(computeTime, 1000);
 
-    return stopCounter;
-  }, []);
+    return () => clearInterval(intervalTimerId);
+  }, [props.counter]);
 
   const remainingTime = format(time, 'dd,hh,mm,ss').split(',');
 
@@ -64,7 +55,7 @@ export const Countdown: React.FC<ICountdownProps> = React.memo(() => {
     <div className={cnCountdown()}>
       {finished && <div className={cnCountdown('FinalTitle')}>{`${lang.finally} пятница!`}</div>}
       <div className={cnCountdown('Title')}>{`Пятница ${lang.in}:`}</div>
-      <div className={cnCountdown('Divider')} />
+      <Divider/>
       <div className={cnCountdown('RemainingTime')}>
         <Counter unit={commonLang.days} value={remainingTime[0]} />
         <Counter unit={commonLang.hours} value={remainingTime[1]} />
@@ -73,5 +64,4 @@ export const Countdown: React.FC<ICountdownProps> = React.memo(() => {
       </div>
     </div>
   );
-
 });

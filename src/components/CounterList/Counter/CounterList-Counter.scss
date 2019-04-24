@@ -1,0 +1,40 @@
+.CounterList {
+    &-Counter {
+        position: relative;
+
+        padding: 10px;
+
+        cursor: pointer;
+
+        &_active {
+            background-color: rgb(171, 171, 171);
+        }
+
+        &:hover {
+            .CounterList-RemoveButton {
+                opacity: 1;
+            }
+        }
+    }
+
+    &-Title {
+        font-size: 18px;
+
+        margin-bottom: 10px;
+    }
+
+    &-Date {
+        font-size: 14px;
+    }
+
+    &-RemoveButton {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+
+        opacity: 0;
+        transition: opacity .25s ease-out;
+
+        will-change: opacity;
+    }
+}

@@ -6,6 +6,7 @@ import { Icon } from '../Icon/Icon';
 import { DateForm } from '../DateForm/DateForm';
 import { CounterList } from '../CounterList/CounterList';
 import { TabPanel } from '../TabPanel/TabPanel';
+import { Divider } from '../Divider/Divider';
 
 export const cnSidebar = cn('Sidebar');
 
@@ -30,8 +31,9 @@ export const Sidebar: React.FC<ISidebarProps> = React.memo((props) => {
         tabs={[
           {
             content: <>
-              <DateForm />
               <CounterList />
+              <Divider />
+              <DateForm />
             </>,
             text: 'Таймеры',
             onClick: onTabClick(0),

@@ -1,0 +1,11 @@
+.Divider {
+    margin: 15px 0;
+
+    height: 1px;
+    width: 80%;
+
+    background: linear-gradient(to left,
+        hsla(var(--primaryHue), 5%, 50%, 0.05) 0%,
+        hsla(var(--primaryHue), 81%, 5%, 0.2) 50%,
+        hsla(var(--primaryHue), 5%, 50%, 0.05) 100%);
+}

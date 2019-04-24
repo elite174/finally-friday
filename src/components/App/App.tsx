@@ -16,13 +16,14 @@ const cnApp = cn('App');
 export const App = () => {
   const [store, dispatch] = useReducer(rootReducer, initialState);
   const [locale, setLocale] = useState(Locales.ru);
+  const currentCounter = store.counterStore.counters.find(c => c.id === store.counterStore.currentCounterId);
 
   return (
     <LanguageContext.Provider value={{ locale, setLocale }}>
       <StoreContext.Provider value={{ store, dispatch }}>
         <div className={cnApp()}>
           <Theme />
-          <Countdown />
+          <Countdown counter={currentCounter} />
           <Sidebar />
         </div>
       </StoreContext.Provider>
