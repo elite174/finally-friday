@@ -12,15 +12,17 @@ import { Locales } from '../../utils/i18n';
 import { LanguageContext } from '../../context/LanguageContext';
 import { Icon } from '../Icon/Icon';
 import { CounterStoreActionTypes } from '../../store/CounterStore/CounterStore.typings';
+import { loadFromStorage } from '../../storage';
 
 const cnApp = cn('App');
 
 export const App = () => {
-  const [store, dispatch] = useReducer(rootReducer, initialState);
+  const [store, dispatch] = useReducer(rootReducer, loadFromStorage());
   const [locale, setLocale] = useState(Locales.ru);
   const currentCounter = store.counterStore.counters.find(c => c.id === store.counterStore.currentCounterId);
 
   const onFridayIconClick = () => dispatch({ type: CounterStoreActionTypes.chooseCounter, payload: { id: undefined } });
+
   return (
     <LanguageContext.Provider value={{ locale, setLocale }}>
       <StoreContext.Provider value={{ store, dispatch }}>

@@ -1,4 +1,5 @@
 import { Action, IState } from "../typings";
+import { saveToStorage } from "../../storage";
 
 
 export const createReducer = (...reducers: ((state: IState, action: Action) => IState)[]) => {
@@ -8,6 +9,8 @@ export const createReducer = (...reducers: ((state: IState, action: Action) => I
         for (let reducer of reducers) {
             result = reducer(result, action);
         }
+
+        saveToStorage(result);
 
         return result;
     }

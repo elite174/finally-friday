@@ -19,6 +19,7 @@ export const Icon: React.FC<IIconProps> = React.memo(props => {
 
     return (
         <i
+            title="Когда пятница?"
             onClick={onIconClick}
             style={style}
             className={cnIcon(null, [`ion-${iconStyle}-${name}`, className])} />

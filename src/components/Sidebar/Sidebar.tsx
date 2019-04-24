@@ -43,12 +43,12 @@ export const Sidebar: React.FC<ISidebarProps> = React.memo((props) => {
             onClick: onTabClick(0),
             active: activeTab === 0,
           },
-          {
+        /*  {
             content: settigsPage,
             text: 'Настройки',
             onClick: onTabClick(1),
             active: activeTab === 1,
-          }
+          }*/
         ]} />
     </div>
   );

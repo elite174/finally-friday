@@ -33,7 +33,6 @@ export const counterReducer = (state: IState, action: Action) => produce(state, 
             return draft;
         case CounterStoreActionTypes.chooseCounter:
             draft.counterStore.currentCounterId = Number(action.payload.id);
-            console.log(action.payload.id)
             return draft;
         default:
             return state;
