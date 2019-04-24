@@ -1,13 +1,13 @@
 {
-  "main.css": "/static/css/main.d1b82415.chunk.css",
-  "main.js": "/static/js/main.b5d1cafe.chunk.js",
-  "main.js.map": "/static/js/main.b5d1cafe.chunk.js.map",
-  "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
-  "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
-  "static/js/2.7cdd7e26.chunk.js": "/static/js/2.7cdd7e26.chunk.js",
-  "static/js/2.7cdd7e26.chunk.js.map": "/static/js/2.7cdd7e26.chunk.js.map",
-  "index.html": "/index.html",
-  "precache-manifest.41b829ddd120b1a2bdcfef73809f8937.js": "/precache-manifest.41b829ddd120b1a2bdcfef73809f8937.js",
-  "service-worker.js": "/service-worker.js",
-  "static/css/main.d1b82415.chunk.css.map": "/static/css/main.d1b82415.chunk.css.map"
+  "main.css": "/finally-friday/static/css/main.5157da7a.chunk.css",
+  "main.js": "/finally-friday/static/js/main.3db2c4a6.chunk.js",
+  "main.js.map": "/finally-friday/static/js/main.3db2c4a6.chunk.js.map",
+  "runtime~main.js": "/finally-friday/static/js/runtime~main.675690a3.js",
+  "runtime~main.js.map": "/finally-friday/static/js/runtime~main.675690a3.js.map",
+  "static/js/2.af5922a3.chunk.js": "/finally-friday/static/js/2.af5922a3.chunk.js",
+  "static/js/2.af5922a3.chunk.js.map": "/finally-friday/static/js/2.af5922a3.chunk.js.map",
+  "index.html": "/finally-friday/index.html",
+  "precache-manifest.0f5615a1100dcaf97c4e13b6ad79aced.js": "/finally-friday/precache-manifest.0f5615a1100dcaf97c4e13b6ad79aced.js",
+  "service-worker.js": "/finally-friday/service-worker.js",
+  "static/css/main.5157da7a.chunk.css.map": "/finally-friday/static/css/main.5157da7a.chunk.css.map"
 }
