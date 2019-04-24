@@ -39,7 +39,7 @@ export const DateForm: React.FC<IClassNameProps> = React.memo((props) => {
 
         const targetDate = DateTime.fromSQL(dateRef.current.value);
         const currentDate = getCurrentDay();
-        if (targetDate < currentDate || titleRef.current.value === '') {
+        if (!targetDate.isValid || targetDate < currentDate || titleRef.current.value === '') {
             if (!buttonDisabled) {
                 setButtonDisabled(true);
                 return;
