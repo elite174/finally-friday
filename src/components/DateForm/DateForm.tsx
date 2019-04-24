@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { DateInput } from '../DateInput/DateInput';
 import { TextInput } from '../TextInput/TextInput';
 import { Button } from '../Button';
@@ -15,6 +15,7 @@ const cnDateForm = cn('DateForm');
 
 export const DateForm: React.FC<IClassNameProps> = React.memo((props) => {
     const { dispatch } = useContext(StoreContext);
+    const [buttonDisabled, setButtonDisabled] = useState(true);
 
     const titleRef = React.createRef<HTMLInputElement>();
     const dateRef = React.createRef<HTMLInputElement>();
@@ -27,11 +28,28 @@ export const DateForm: React.FC<IClassNameProps> = React.memo((props) => {
 
         titleRef.current.value = '';
         dateRef.current.value = getCurrentDay().toSQLDate();
+        onInputChange();
         //repeatRef.current.checked = false;
     }
 
-    const handleError = () => {
-        reset();
+    const onInputChange = () => {
+        if (!dateRef.current || !titleRef.current) {
+            return;
+        }
+
+        const targetDate = DateTime.fromSQL(dateRef.current.value);
+        const currentDate = getCurrentDay();
+        if (targetDate < currentDate || titleRef.current.value === '') {
+            if (!buttonDisabled) {
+                setButtonDisabled(true);
+                return;
+            }
+        } else {
+            if (buttonDisabled) {
+                setButtonDisabled(false);
+                return;
+            }
+        }
     }
 
     const onButtonClick = () => {
@@ -40,11 +58,6 @@ export const DateForm: React.FC<IClassNameProps> = React.memo((props) => {
         }
 
         const targetDate = DateTime.fromSQL(dateRef.current.value);
-        const currentDate = getCurrentDay();
-        if (targetDate < currentDate || titleRef.current.value === '') {
-            handleError();
-            return;
-        }
 
         dispatch({
             type: CounterStoreActionTypes.add,
@@ -55,10 +68,10 @@ export const DateForm: React.FC<IClassNameProps> = React.memo((props) => {
 
     return (
         <div className={cnDateForm(null, [props.className])}>
-            <TextInput className={cnDateForm('Input')} forwardRef={titleRef} caption={'Введите название события'} placeholder='День рождения Саши' />
-            <DateInput className={cnDateForm('Input')} forwardRef={dateRef} caption={'Введите дату'} date={getCurrentDay()} />
+            <TextInput onChange={onInputChange} className={cnDateForm('Input')} forwardRef={titleRef} caption={'Введите название события'} placeholder='День рождения Саши' />
+            <DateInput onChange={onInputChange} className={cnDateForm('Input')} forwardRef={dateRef} caption={'Введите дату'} date={getCurrentDay()} />
             {false && <Checkbox className={cnDateForm('Input')} forwardRef={repeatRef} label={'Повторять?'} checked={false} />}
-            <Button text="Добавить" onButtonClick={onButtonClick} />
+            <Button text="Добавить" onButtonClick={onButtonClick} disabled={buttonDisabled} />
         </div>
     )
 })

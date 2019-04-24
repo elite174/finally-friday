@@ -11,14 +11,18 @@ export interface IButtonProps extends IClassNameProps {
   hint?: string;
   text?: string;
   icon?: IIconProps;
+  disabled?: boolean;
 }
 
 export const cnButton = cn('Button');
 
 export const Button: React.FC<IButtonProps> = React.memo(props => {
-  const { className, onButtonClick, text, icon } = props;
+  const { className, onButtonClick, text, icon, disabled } = props;
   return (
-    <button className={cnButton(null, [className])} onClick={onButtonClick}>
+    <button
+      disabled={disabled}
+      className={cnButton({ disabled }, [className])}
+      onClick={onButtonClick}>
       {text}
       {icon && <Icon {...icon} className={cnButton('Icon')} />}
     </button>

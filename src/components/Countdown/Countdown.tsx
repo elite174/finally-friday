@@ -58,7 +58,7 @@ export const Countdown: React.FC<ICountdownProps> = React.memo((props) => {
       <div className={cnCountdown('Title')}>{`${eventName} ${lang.in}:`}</div>
       <Divider />
       <div className={cnCountdown('RemainingTime')}>
-        <Counter unit={commonLang.days} value={remainingTime[0]} />
+        <Counter unit={commonLang.days} value={Number(remainingTime[0]) > 999 ? '∞' : remainingTime[0]} />
         <Counter unit={commonLang.hours} value={remainingTime[1]} />
         <Counter unit={commonLang.minutes} value={remainingTime[2]} />
         <Counter unit={commonLang.seconds} value={remainingTime[3]} />
