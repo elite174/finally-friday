@@ -28,13 +28,13 @@
     font-size: 40px;
 
     position: absolute;
-    top: 20%;
+    top: 50%;
     left: 50%;
 
     width: 90%;
 
     animation: rainbow 3s infinite;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%);
     text-transform: uppercase;
     text-align: center;
     overflow: hidden;

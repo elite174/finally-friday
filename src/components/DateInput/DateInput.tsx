@@ -21,7 +21,7 @@ export const DateInput: React.FC<IDateInputProps> = React.memo(props => {
     return (
         <div className={cnDateInput(null, [props.className])}>
             <label className={cnDateInput('Label')}>{caption}</label>
-            <input type='date' ref={forwardRef} defaultValue={date && date.toSQLDate()} className={cnDateInput('Input')} onChange={onChange} />
+            <input type='date' tabIndex={-1} ref={forwardRef} defaultValue={date && date.toSQLDate()} className={cnDateInput('Input')} onChange={onChange} />
         </div>
     )
 });

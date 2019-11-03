@@ -17,7 +17,7 @@ import { loadFromStorage } from '../../storage';
 const cnApp = cn('App');
 
 export const App = () => {
-  const [store, dispatch] = useReducer(rootReducer, loadFromStorage());
+  const [store, dispatch] = useReducer(rootReducer, initialState);
   const [locale, setLocale] = useState(Locales.ru);
   const currentCounter = store.counterStore.counters.find(c => c.id === store.counterStore.currentCounterId);
 

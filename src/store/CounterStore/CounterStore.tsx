@@ -1,6 +1,8 @@
-import { IState, Action } from "../typings";
 import produce from "immer";
+
+import { IState, Action } from "../typings";
 import { CounterStoreActionTypes, CounterAddAction, CounterRemoveAction, ICounter } from "./CounterStore.typings";
+
 export interface ICounterStore {
     counters: ICounter[];
     currentCounterId?: number;

@@ -20,7 +20,7 @@ export const TextInput: React.FC<ITextInputProps> = React.memo(props => {
     return (
         <div className={cnTextInput(null, [props.className])}>
             <label className={cnTextInput('Label')}>{caption}</label>
-            <input onChange={onChange} className={cnTextInput('Input')} defaultValue={defaultValue} ref={forwardRef} placeholder={placeholder} />
+            <input tabIndex={-1} onChange={onChange} className={cnTextInput('Input')} defaultValue={defaultValue} ref={forwardRef} placeholder={placeholder} />
         </div>
     );
 });
