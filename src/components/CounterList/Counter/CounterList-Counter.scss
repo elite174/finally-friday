@@ -40,12 +40,16 @@
 
     &-RemoveButton {
         position: absolute;
-        top: 10px;
+        top: 5px;
         right: 10px;
 
         opacity: 0;
         transition: opacity .2s ease-out;
 
         will-change: opacity;
+
+        @media (max-width: 500px) {
+            opacity: 1;
+        }
     }
 }

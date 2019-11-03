@@ -1,22 +1,52 @@
 .Counter {
-    width: 110px;
-    margin-right: 20px;
-    padding: 10px;
+  --font-size-value: 56px;
+  --font-size-value-mobile: 20px;
+  --font-size-unit: 13px;
+  --font-size-unit-mobile: 10px;
 
-    background: var(--background-light);
-    box-shadow: 0 0 7px rgb(220, 220, 220);
-    border-radius: 10px;
-    color: var(--text-primary-color);
+  --width: 110px;
+  --width-mobile: 55px;
 
-    &-Unit {
-        font-size: var(--font-size-secondary);
+  --padding: 10px;
+  --padding-mobile: 5px;
+
+  --margin-rihgt: 20px;
+  --margin-right-mobile: 10px;
+
+  width: var(--width);
+  margin-right: var(--margin-rihgt);
+  padding: var(--padding-mobile);
+
+  background: var(--background-light);
+  box-shadow: 0 0 7px rgb(220, 220, 220);
+  border-radius: 10px;
+  color: var(--text-primary-color);
+
+  @media (max-width: 500px) {
+    width: var(--width-mobile);
+    padding: var(--padding-mobile);
+    margin-right: var(--margin-right-mobile);
+
+    .Counter {
+      &-Value {
+        font-size: var(--font-size-value-mobile);
+      }
+
+      &-Unit {
+        font-size: var(--font-size-unit-mobile);
+      }
     }
+  }
 
-    &-Value {
-        font-size: 56px;
-    }
+  &-Unit {
+    font-size: var(--font-size-unit);
+  }
 
-    &:last-child {
-        margin-right: 0;
-    }
+  &-Value {
+    font-size: var(--font-size-value);
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
 }
