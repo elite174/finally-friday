@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/finally-friday/precache-manifest.62b9c7e04ff5cf981229a0cb3796ae35.js"
+  "/finally-friday/precache-manifest.dc2acb3a8df08e6491010a001f004e81.js"
 );
 
 workbox.clientsClaim();

@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/finally-friday/static/js/2.af5922a3.chunk.js"
   },
   {
-    "revision": "75fa53653bcd8fde6782b68bfa023f29",
+    "revision": "2b0dbcb2372ebe46e2d5a37174c3f7e0",
     "url": "/finally-friday/index.html"
   }
 ];
