@@ -1,6 +1,6 @@
-import React, { useState, useReducer } from 'react';
+import React from 'react';
 import { cn } from 'recn';
-import { getCurrentDay, noop } from '../../utils';
+import { noop } from '../../utils';
 
 import './DateInput.scss';
 import { DateTime } from 'luxon';
@@ -15,13 +15,20 @@ interface IDateInputProps extends IClassNameProps {
     onChange?(): void;
 }
 
-export const DateInput: React.FC<IDateInputProps> = React.memo(props => {
+export const DateInput: React.FC<IDateInputProps> = React.memo((props) => {
     const { forwardRef, caption, date, onChange = noop } = props;
 
     return (
         <div className={cnDateInput(null, [props.className])}>
             <label className={cnDateInput('Label')}>{caption}</label>
-            <input type='date' tabIndex={-1} ref={forwardRef} defaultValue={date && date.toSQLDate()} className={cnDateInput('Input')} onChange={onChange} />
+            <input
+                type='date'
+                tabIndex={-1}
+                ref={forwardRef}
+                defaultValue={(date && date.toSQLDate()) || ''}
+                className={cnDateInput('Input')}
+                onChange={onChange}
+            />
         </div>
-    )
+    );
 });

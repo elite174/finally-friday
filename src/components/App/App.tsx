@@ -12,7 +12,6 @@ import { Locales } from '../../utils/i18n';
 import { LanguageContext } from '../../context/LanguageContext';
 import { Icon } from '../Icon/Icon';
 import { CounterStoreActionTypes } from '../../store/CounterStore/CounterStore.typings';
-import { loadFromStorage } from '../../storage';
 
 const cnApp = cn('App');
 

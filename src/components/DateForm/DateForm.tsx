@@ -6,7 +6,10 @@ import { cn } from 'recn';
 import { StoreContext } from '../../context/StoreContext';
 import { getCurrentDay } from '../../utils';
 import { DateTime } from 'luxon';
-import { CounterStoreActionTypes, CounterAddAction } from '../../store/CounterStore/CounterStore.typings';
+import {
+    CounterStoreActionTypes,
+    CounterAddAction
+} from '../../store/CounterStore/CounterStore.typings';
 import './DateForm.scss';
 import { Checkbox } from '../Checkbox/Checkbox';
 import { IClassNameProps } from '../../typings';
@@ -27,10 +30,10 @@ export const DateForm: React.FC<IClassNameProps> = React.memo((props) => {
         }
 
         titleRef.current.value = '';
-        dateRef.current.value = getCurrentDay().toSQLDate();
+        dateRef.current.value = getCurrentDay().toSQLDate() || '';
         onInputChange();
         //repeatRef.current.checked = false;
-    }
+    };
 
     const onInputChange = () => {
         if (!dateRef.current || !titleRef.current) {
@@ -39,7 +42,11 @@ export const DateForm: React.FC<IClassNameProps> = React.memo((props) => {
 
         const targetDate = DateTime.fromSQL(dateRef.current.value);
         const currentDate = getCurrentDay();
-        if (!targetDate.isValid || targetDate < currentDate || titleRef.current.value === '') {
+        if (
+            !targetDate.isValid ||
+            targetDate < currentDate ||
+            titleRef.current.value === ''
+        ) {
             if (!buttonDisabled) {
                 setButtonDisabled(true);
                 return;
@@ -50,7 +57,7 @@ export const DateForm: React.FC<IClassNameProps> = React.memo((props) => {
                 return;
             }
         }
-    }
+    };
 
     const onButtonClick = () => {
         if (!dateRef.current || !titleRef.current) {
@@ -61,17 +68,43 @@ export const DateForm: React.FC<IClassNameProps> = React.memo((props) => {
 
         dispatch({
             type: CounterStoreActionTypes.add,
-            payload: { text: titleRef.current.value, date: targetDate.toSQLDate() }
+            payload: {
+                text: titleRef.current.value,
+                date: targetDate.toSQLDate()
+            }
         } as CounterAddAction);
         reset();
-    }
+    };
 
     return (
         <div className={cnDateForm(null, [props.className])}>
-            <TextInput onChange={onInputChange} className={cnDateForm('Input')} forwardRef={titleRef} caption={'Введите название события'} placeholder='День рождения Саши' />
-            <DateInput onChange={onInputChange} className={cnDateForm('Input')} forwardRef={dateRef} caption={'Введите дату'} date={getCurrentDay()} />
-            {false && <Checkbox className={cnDateForm('Input')} forwardRef={repeatRef} label={'Повторять?'} checked={false} />}
-            <Button text="Добавить" onButtonClick={onButtonClick} disabled={buttonDisabled} />
+            <TextInput
+                onChange={onInputChange}
+                className={cnDateForm('Input')}
+                forwardRef={titleRef}
+                caption={'Введите название события'}
+                placeholder='День рождения Саши'
+            />
+            <DateInput
+                onChange={onInputChange}
+                className={cnDateForm('Input')}
+                forwardRef={dateRef}
+                caption={'Введите дату'}
+                date={getCurrentDay()}
+            />
+            {false && (
+                <Checkbox
+                    className={cnDateForm('Input')}
+                    forwardRef={repeatRef}
+                    label={'Повторять?'}
+                    checked={false}
+                />
+            )}
+            <Button
+                text='Добавить'
+                onButtonClick={onButtonClick}
+                disabled={buttonDisabled}
+            />
         </div>
-    )
-})
+    );
+});
