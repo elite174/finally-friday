@@ -13,26 +13,38 @@ import { LanguageContext } from '../../context/LanguageContext';
 import { Icon } from '../Icon/Icon';
 import { CounterStoreActionTypes } from '../../store/CounterStore/CounterStore.typings';
 import { loadFromStorage } from '../../storage';
+import Ads from './Ads';
 
 const cnApp = cn('App');
 
 export const App = () => {
-  const [store, dispatch] = useReducer(rootReducer, loadFromStorage());
-  const [locale, setLocale] = useState(Locales.ru);
-  const currentCounter = store.counterStore.counters.find(c => c.id === store.counterStore.currentCounterId);
+    const [store, dispatch] = useReducer(rootReducer, loadFromStorage());
+    const [locale, setLocale] = useState(Locales.ru);
+    const currentCounter = store.counterStore.counters.find(
+        (c) => c.id === store.counterStore.currentCounterId
+    );
 
-  const onFridayIconClick = () => dispatch({ type: CounterStoreActionTypes.chooseCounter, payload: { id: undefined } });
+    const onFridayIconClick = () =>
+        dispatch({
+            type: CounterStoreActionTypes.chooseCounter,
+            payload: { id: undefined }
+        });
 
-  return (
-    <LanguageContext.Provider value={{ locale, setLocale }}>
-      <StoreContext.Provider value={{ store, dispatch }}>
-        <div className={cnApp()}>
-          <Theme />
-          <Countdown counter={currentCounter} />
-          <Sidebar />
-          <Icon className={cnApp('FridayIcon')} onIconClick={onFridayIconClick} name='flame' />
-        </div>
-      </StoreContext.Provider>
-    </LanguageContext.Provider>
-  );
+    return (
+        <LanguageContext.Provider value={{ locale, setLocale }}>
+            <StoreContext.Provider value={{ store, dispatch }}>
+                <div className={cnApp()}>
+                    <Theme />
+                    <Countdown counter={currentCounter} />
+                    <Sidebar />
+                    <Icon
+                        className={cnApp('FridayIcon')}
+                        onIconClick={onFridayIconClick}
+                        name='flame'
+                    />
+                    <Ads />
+                </div>
+            </StoreContext.Provider>
+        </LanguageContext.Provider>
+    );
 };
