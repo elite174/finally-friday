@@ -21,7 +21,7 @@ const Ads = () => {
         adContainer.current.appendChild(s1);
 
         const s2 = document.createElement('script');
-        s1.innerHTML = `(adsbygoogle = window.adsbygoogle || []).push({});`;
+        s2.innerHTML = `(adsbygoogle = window.adsbygoogle || []).push({});`;
         adContainer.current.appendChild(s2);
     }, []);
 
