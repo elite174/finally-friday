@@ -33,8 +33,6 @@ const Ads = () => {
                     style={{ display: 'block', height: 90 }}
                     data-ad-client='ca-pub-6410994282681966'
                     data-ad-slot='7718000542'
-                    data-ad-format='auto'
-                    data-full-width-responsive='false'
                 ></ins>
             </div>
             <div className='Ads-Item Ads-Item_bottom'>
@@ -43,8 +41,6 @@ const Ads = () => {
                     style={{ display: 'block', height: 90 }}
                     data-ad-client='ca-pub-6410994282681966'
                     data-ad-slot='5079969158'
-                    data-ad-format='auto'
-                    data-full-width-responsive='false'
                 ></ins>
             </div>
         </div>
