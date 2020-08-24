@@ -30,7 +30,7 @@ const Ads = () => {
             <div className='Ads-Item Ads-Item_top'>
                 <ins
                     className='adsbygoogle'
-                    style={{ display: 'block' }}
+                    style={{ display: 'block', height: 90 }}
                     data-ad-client='ca-pub-6410994282681966'
                     data-ad-slot='7718000542'
                     data-ad-format='auto'
@@ -40,7 +40,7 @@ const Ads = () => {
             <div className='Ads-Item Ads-Item_bottom'>
                 <ins
                     className='adsbygoogle'
-                    style={{ display: 'block' }}
+                    style={{ display: 'block', height: 90 }}
                     data-ad-client='ca-pub-6410994282681966'
                     data-ad-slot='5079969158'
                     data-ad-format='auto'
